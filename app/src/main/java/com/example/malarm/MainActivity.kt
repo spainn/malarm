@@ -11,6 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.malarm.ui.theme.MalarmTheme
+import androidx.compose.runtime.*
+import kotlinx.coroutines.delay
+import android.icu.util.Calendar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +24,7 @@ class MainActivity : ComponentActivity() {
             var second by remember { mutableStateOf("0") }
             var amOrPm by remember { mutableStateOf("0") }
 
+            // keep track of the time
             LaunchedEffect(Unit) {
                 while (true) {
                     val cal = Calendar.getInstance()
