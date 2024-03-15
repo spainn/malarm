@@ -18,6 +18,7 @@ import android.icu.util.Calendar
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.unit.dp
+import androidx.compose.material3.Switch
 
 
 class MainActivity : ComponentActivity() {
@@ -68,14 +69,30 @@ fun Alarm(modifier: Modifier = Modifier) {
     Surface(shape = MaterialTheme.shapes.large, shadowElevation = 1.dp) {
         Box(
             modifier = Modifier
-                .padding(1.dp)
+                .padding(start = 30.dp) // all, horizontal, vertical, start, top, bottom
                 .fillMaxSize(),
             contentAlignment = Alignment.CenterStart
         ) {
-            Row {
-                DigitalTime("01", "37", "AM")
-                Spacer(modifier = Modifier.width(40.dp))
-                DigitalTime("02", "37", "AM")
+            Row(verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                DigitalTime(modifier = Modifier
+                                .weight(3f),
+                            hour = "01",
+                            minute = "37",
+                            amOrPm = "AM"
+                )
+                //Spacer(modifier = Modifier.weight(1f))
+
+                var checked by remember { mutableStateOf(true) }
+                Switch(
+                    checked = checked,
+                    modifier = Modifier
+                        .weight(1f),
+                    onCheckedChange = {
+                        checked = it
+                    }
+                )
             }
         }
     }
@@ -92,12 +109,15 @@ fun AlarmPreview() {
 
 @Composable
 fun DigitalTime(
+    modifier: Modifier = Modifier,
     hour: String,
     minute: String,
     amOrPm: String
+
 ) {
     Text(
         text = "$hour:$minute $amOrPm",
-        style = MaterialTheme.typography.titleLarge
+        style = MaterialTheme.typography.titleLarge,
+        modifier = modifier
     )
 }
