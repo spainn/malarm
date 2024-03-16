@@ -20,6 +20,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Switch
 import android.content.res.Configuration
+import androidx.compose.foundation.border
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
 
 
 class MainActivity : ComponentActivity() {
@@ -67,18 +75,27 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Alarm(modifier: Modifier = Modifier) {
-    Surface(shape = MaterialTheme.shapes.large, shadowElevation = 1.dp) {
+    Surface(shadowElevation = 1.dp) {
         Box(
             modifier = Modifier
-                .padding(start = 30.dp) // all, horizontal, vertical, start, top, bottom
                 .fillMaxSize(),
             contentAlignment = Alignment.CenterStart
         ) {
             Row(verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .padding(bottom = 120.dp)
+                    .height(100.dp)
+                    .fillMaxWidth()
+                    .border(
+                        width = 1.33.dp,
+                        color = Color.LightGray,
+                        shape = RoundedCornerShape(10.dp)
+                    )
+
             ) {
                 DigitalTime(modifier = Modifier
-                                .weight(3f),
+                                .weight(3f)
+                                .padding(start = 20.dp),
                             hour = "01",
                             minute = "37",
                             amOrPm = "AM"
@@ -123,7 +140,8 @@ fun DigitalTime(
 ) {
     Text(
         text = "$hour:$minute $amOrPm",
-        style = MaterialTheme.typography.titleLarge,
+        //style = MaterialTheme.typography.titleLarge,
+        style = TextStyle(fontSize = 25.sp),
         modifier = modifier
     )
 }
