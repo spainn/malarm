@@ -19,6 +19,7 @@ import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Switch
+import android.content.res.Configuration
 
 
 class MainActivity : ComponentActivity() {
@@ -99,7 +100,12 @@ fun Alarm(modifier: Modifier = Modifier) {
 
 }
 
-@Preview
+@Preview(name = "Light Mode")
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    name = "Dark Mode"
+)
 @Composable
 fun AlarmPreview() {
     MalarmTheme {
