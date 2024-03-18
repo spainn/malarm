@@ -21,12 +21,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material3.Switch
 import android.content.res.Configuration
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
 
@@ -93,9 +97,14 @@ fun Alarm(modifier: Modifier = Modifier) {
                     )
 
             ) {
+                var enabled by rememberSaveable{ mutableStateOf(true) }
                 DigitalTime(modifier = Modifier
                                 .weight(3f)
                                 .padding(start = 20.dp),
+//                                .clickable(enabled = enabled) {
+//                                    enabled = false
+//                                    Log.d("Test", "Clicked")
+//                                },
                             hour = "01",
                             minute = "37",
                             amOrPm = "AM"
@@ -117,16 +126,23 @@ fun Alarm(modifier: Modifier = Modifier) {
 
 }
 
-@Preview(name = "Light Mode")
 @Preview(
     uiMode = Configuration.UI_MODE_NIGHT_YES,
     showBackground = true,
     name = "Dark Mode"
 )
+@Preview(name = "Light Mode")
 @Composable
 fun AlarmPreview() {
     MalarmTheme {
         Alarm()
+    }
+}
+
+@Composable
+fun TimeSelection() {
+    MalarmTheme {
+        // filler
     }
 }
 
