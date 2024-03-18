@@ -140,13 +140,6 @@ fun AlarmPreview() {
 }
 
 @Composable
-fun TimeSelection() {
-    MalarmTheme {
-        // filler
-    }
-}
-
-@Composable
 fun DigitalTime(
     modifier: Modifier = Modifier,
     hour: String,
@@ -160,4 +153,33 @@ fun DigitalTime(
         style = TextStyle(fontSize = 25.sp),
         modifier = modifier
     )
+}
+
+@Composable
+fun TimeSelection() {
+    MalarmTheme {
+        // filler
+    }
+}
+
+@Composable
+fun TextSlider() {
+    MalarmTheme {
+        // filler
+    }
+}
+
+@Preview
+@Composable
+fun TextSliderPreview() {
+    MalarmTheme{
+        TextSlider()
+    }
+}
+
+@Composable
+fun IntSlider() {
+    MalarmTheme {
+        // filler
+    }
 }
