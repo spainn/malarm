@@ -97,7 +97,7 @@ fun Alarm(modifier: Modifier = Modifier) {
                     )
 
             ) {
-                var enabled by rememberSaveable{ mutableStateOf(true) }
+
                 DigitalTime(modifier = Modifier
                                 .weight(3f)
                                 .padding(start = 20.dp),
@@ -164,8 +164,10 @@ fun TimeSelection() {
 
 @Composable
 fun TextSlider() {
+    var amOrPm by remember { mutableStateOf("AM") }
+    var count = 0
     MalarmTheme {
-        // filler
+        Text(amOrPm, modifier = Modifier.clickable {count += 1; Log.d("test", count.toString())})
     }
 }
 
