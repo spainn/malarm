@@ -29,6 +29,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
@@ -162,13 +163,26 @@ fun TimeSelection() {
     }
 }
 
+// make a list of clickable texts in a column that will each set a variable
+// that holds whatever value that was in the text slider (am or pm).  Do the same for
+// IntSlider but make it hold integers instead.
 @Composable
 fun TextSlider() {
-    var amOrPm by remember { mutableStateOf("AM") }
-    var count = 0
-    MalarmTheme {
-        Text(amOrPm, modifier = Modifier.clickable {count += 1; Log.d("test", count.toString())})
-    }
+
+    val (clicked, setClicked) = remember { mutableStateOf(false) }
+    val (text, setText) = remember { mutableStateOf("Not clicked.") }
+    ClickableText(
+        text = AnnotatedString(text),
+        onClick = {
+            setClicked(!clicked)
+            if (clicked) {
+                setText("Clicked.")
+            } else {
+                setText("Not clicked.")
+            }
+        },
+        modifier = Modifier.clickable { }
+    )
 }
 
 @Preview
