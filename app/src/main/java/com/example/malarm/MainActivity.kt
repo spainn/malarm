@@ -201,6 +201,33 @@ fun TextSliderPreview() {
 @Composable
 fun IntSlider() {
     MalarmTheme {
-        // filler
+
+        val (clicked, setClicked) = remember { mutableStateOf(false) }
+        val (text, setText) = remember { mutableStateOf("Not clicked.") }
+
+        Column {
+            for (i in 0..60) {
+                ClickableText(
+                    text = if (i >= 10) AnnotatedString(i.toString()) else AnnotatedString("0$i"),
+                    onClick = {
+                        setClicked(!clicked)
+                        if (clicked) {
+                            setText("Clicked.")
+                        } else {
+                            setText("Not clicked.")
+                        }
+                    },
+                    modifier = Modifier.clickable { }
+                )
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+fun IntSliderPreview() {
+    MalarmTheme{
+        IntSlider()
     }
 }
