@@ -205,12 +205,15 @@ fun IntSlider() {
         val (clicked, setClicked) = remember { mutableStateOf(false) }
         val (text, setText) = remember { mutableStateOf("Not clicked.") }
 
+        var time by remember { mutableIntStateOf(0) }
+
         Column {
             for (i in 0..60) {
                 ClickableText(
                     text = if (i >= 10) AnnotatedString(i.toString()) else AnnotatedString("0$i"),
                     onClick = {
                         setClicked(!clicked)
+                        time = i
                         if (clicked) {
                             setText("Clicked.")
                         } else {
