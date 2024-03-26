@@ -219,6 +219,7 @@ fun IntSlider() {
                         } else {
                             setText("Not clicked.")
                         }
+                        Log.d("Time:", "$time")
                     },
                     modifier = Modifier.clickable { }
                 )
