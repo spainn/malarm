@@ -102,10 +102,6 @@ fun Alarm(modifier: Modifier = Modifier) {
                 DigitalTime(modifier = Modifier
                                 .weight(3f)
                                 .padding(start = 20.dp),
-//                                .clickable(enabled = enabled) {
-//                                    enabled = false
-//                                    Log.d("Test", "Clicked")
-//                                },
                             hour = "01",
                             minute = "37",
                             amOrPm = "AM"
