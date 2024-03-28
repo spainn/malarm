@@ -167,11 +167,13 @@ fun TextSlider() {
 
     val (clicked, setClicked) = remember { mutableStateOf(false) }
     val (text, setText) = remember { mutableStateOf("Not clicked.") }
+    // make this a passable value so it can be changed but defeault to this
+    val options = listOf("AM", "PM")
 
     Column {
-        for (i in 1..3) {
+        for (i in 0..1) {
             ClickableText(
-                text = AnnotatedString(text),
+                text = AnnotatedString(options[i]),
                 onClick = {
                     setClicked(!clicked)
                     if (clicked) {
