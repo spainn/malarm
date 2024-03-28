@@ -163,12 +163,11 @@ fun TimeSelection() {
 // that holds whatever value that was in the text slider (am or pm).  Do the same for
 // IntSlider but make it hold integers instead.
 @Composable
-fun TextSlider() {
+fun TextSlider(options: List<String> = listOf("AM", "PM")) {
 
     val (clicked, setClicked) = remember { mutableStateOf(false) }
     val (text, setText) = remember { mutableStateOf("Not clicked.") }
     // make this a passable value so it can be changed but defeault to this
-    val options = listOf("AM", "PM")
 
     Column {
         for (i in 0..1) {
