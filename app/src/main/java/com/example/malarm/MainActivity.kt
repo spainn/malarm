@@ -100,8 +100,8 @@ fun Alarm(modifier: Modifier = Modifier) {
             ) {
 
                 DigitalTime(modifier = Modifier
-                                .weight(3f)
-                                .padding(start = 20.dp),
+                    .weight(3f)
+                    .padding(start = 20.dp),
                             hour = "01",
                             minute = "37",
                             amOrPm = "AM"
@@ -144,12 +144,23 @@ fun DigitalTime(
     amOrPm: String
 
 ) {
-    Text(
-        text = "$hour:$minute $amOrPm",
-        //style = MaterialTheme.typography.titleLarge,
-        style = TextStyle(fontSize = 25.sp),
-        modifier = modifier
+    val (text, setText) = remember { mutableStateOf("$hour:$minute $amOrPm") }
+    var showSlider by remember { mutableStateOf(false) }
+
+    ClickableText(
+        text = AnnotatedString(text),
+        style = TextStyle(fontSize = 25.sp, color = Color.White),
+        modifier = modifier,
+        onClick = {
+            showSlider = true
+            Log.d("DigitalTime ClickableText", "was clicked")
+        }
     )
+
+    if (showSlider) {
+        TextSlider()
+        IntSlider()
+    }
 }
 
 @Composable
@@ -165,23 +176,18 @@ fun TimeSelection() {
 @Composable
 fun TextSlider(options: List<String> = listOf("AM", "PM")) {
 
-    val (clicked, setClicked) = remember { mutableStateOf(false) }
-    val (text, setText) = remember { mutableStateOf("Not clicked.") }
-    // make this a passable value so it can be changed but defeault to this
+    // will eventually need to be stored in permanent storage
+    var amOrPm = "AM"
 
     Column {
         for (i in 0..1) {
+            val (text, setText) = remember { mutableStateOf(options[i]) }
             ClickableText(
-                text = AnnotatedString(options[i]),
+                text = AnnotatedString(text),
                 onClick = {
-                    setClicked(!clicked)
-                    if (clicked) {
-                        setText("Clicked.")
-                    } else {
-                        setText("Not clicked.")
-                    }
-                },
-                modifier = Modifier.clickable { }
+                    amOrPm = options[i]
+                    Log.d("test", amOrPm)
+                }
             )
         }
     }
