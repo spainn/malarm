@@ -157,7 +157,12 @@ fun DigitalTime(
         }
     )
 
+    // WORK HERE TO MODIFY BOTH SLIDERS TO MAKE THEM USABLE WHEN THE TIME IS CLICKED< ALSO
+    // HIDE ORIGINAL TIME WHEN CLICKED AND MAKE IT TO WHERE showSlider IS SET BACK
+    // TO FALSE
     if (showSlider) {
+        // just make this into it's own composable that uses the sliders
+        // put sliders in scroll viewZ
         TextSlider()
         IntSlider()
     }
@@ -184,6 +189,7 @@ fun TextSlider(options: List<String> = listOf("AM", "PM")) {
             val (text, setText) = remember { mutableStateOf(options[i]) }
             ClickableText(
                 text = AnnotatedString(text),
+                style = TextStyle(fontSize = 25.sp, color = Color.White),
                 onClick = {
                     amOrPm = options[i]
                     Log.d("test", amOrPm)
@@ -214,6 +220,7 @@ fun IntSlider() {
             for (i in 0..60) {
                 ClickableText(
                     text = if (i >= 10) AnnotatedString(i.toString()) else AnnotatedString("0$i"),
+                    style = TextStyle(fontSize = 25.sp, color = Color.White),
                     onClick = {
                         setClicked(!clicked)
                         time = i
