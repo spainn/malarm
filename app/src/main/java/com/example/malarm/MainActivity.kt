@@ -161,17 +161,18 @@ fun DigitalTime(
     // HIDE ORIGINAL TIME WHEN CLICKED AND MAKE IT TO WHERE showSlider IS SET BACK
     // TO FALSE
     if (showSlider) {
-        // just make this into it's own composable that uses the sliders
-        // put sliders in scroll viewZ
-        TextSlider()
-        IntSlider()
+        TimeSelection()
+        //showSlider = false
     }
 }
 
 @Composable
 fun TimeSelection() {
     MalarmTheme {
-        // filler
+        Row() {
+            TextSlider()
+            IntSlider()
+        }
     }
 }
 
