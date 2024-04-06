@@ -34,7 +34,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,19 +122,6 @@ fun Alarm(modifier: Modifier = Modifier) {
 
 }
 
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
-    name = "Dark Mode"
-)
-@Preview(name = "Light Mode")
-@Composable
-fun AlarmPreview() {
-    MalarmTheme {
-        Alarm()
-    }
-}
-
 @Composable
 fun DigitalTime(
     modifier: Modifier = Modifier,
@@ -160,6 +146,8 @@ fun DigitalTime(
     // WORK HERE TO MODIFY BOTH SLIDERS TO MAKE THEM USABLE WHEN THE TIME IS CLICKED< ALSO
     // HIDE ORIGINAL TIME WHEN CLICKED AND MAKE IT TO WHERE showSlider IS SET BACK
     // TO FALSE
+    // NEED TO MOVE STUFF TO WORK DOWN NOT UP... aka TimeSelection below DigitalTime, but for all
+    //  composables
     if (showSlider) {
         TimeSelection()
         //showSlider = false
@@ -200,14 +188,6 @@ fun TextSlider(options: List<String> = listOf("AM", "PM")) {
     }
 }
 
-@Preview
-@Composable
-fun TextSliderPreview() {
-    MalarmTheme{
-        TextSlider()
-    }
-}
-
 @Composable
 fun IntSlider() {
     MalarmTheme {
@@ -239,10 +219,31 @@ fun IntSlider() {
     }
 }
 
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    showBackground = true,
+    name = "Dark Mode"
+)
+@Preview(name = "Light Mode")
+@Composable
+fun AlarmPreview() {
+    MalarmTheme {
+        Alarm()
+    }
+}
+
 @Preview
 @Composable
 fun IntSliderPreview() {
     MalarmTheme{
         IntSlider()
+    }
+}
+
+@Preview
+@Composable
+fun TextSliderPreview() {
+    MalarmTheme{
+        TextSlider()
     }
 }
