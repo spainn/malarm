@@ -64,13 +64,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-
             MalarmTheme {
-                // A surface container using the 'background' color from the theme
-//                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-//                    Greeting("Android")
-//                }
-
                 Alarm()
             }
         }
@@ -164,9 +158,6 @@ fun TimeSelection() {
     }
 }
 
-// make a list of clickable texts in a column that will each set a variable
-// that holds whatever value that was in the text slider (am or pm).  Do the same for
-// IntSlider but make it hold integers instead.
 @Composable
 fun TextSlider(options: List<String> = listOf("AM", "PM")) {
 
