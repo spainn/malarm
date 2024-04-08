@@ -22,6 +22,7 @@ import androidx.compose.material3.Switch
 import android.content.res.Configuration
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.ButtonDefaults
@@ -188,22 +189,21 @@ fun IntSlider() {
 
         var time by remember { mutableIntStateOf(0) }
 
-        Column {
-            for (i in 0..60) {
+        LazyColumn {
+            items(60) { index ->
                 ClickableText(
-                    text = if (i >= 10) AnnotatedString(i.toString()) else AnnotatedString("0$i"),
+                    text = if (index+1 >= 10) AnnotatedString((index+1).toString()) else AnnotatedString("0" + (index+1).toString()),
                     style = TextStyle(fontSize = 25.sp, color = Color.White),
                     onClick = {
                         setClicked(!clicked)
-                        time = i
+                        time = index+1
                         if (clicked) {
                             setText("Clicked.")
                         } else {
                             setText("Not clicked.")
                         }
                         Log.d("Time:", "$time")
-                    },
-                    modifier = Modifier.clickable { }
+                    }
                 )
             }
         }
