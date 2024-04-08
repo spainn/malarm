@@ -165,14 +165,27 @@ fun TextSlider(options: List<String> = listOf("AM", "PM")) {
     // will eventually need to be stored in permanent storage
     var amOrPm = "AM"
 
-    Column {
-        for (i in 0..1) {
-            val (text, setText) = remember { mutableStateOf(options[i]) }
+//    Column {
+//        for (i in 0..1) {
+//            val (text, setText) = remember { mutableStateOf(options[i]) }
+//            ClickableText(
+//                text = AnnotatedString(text),
+//                style = TextStyle(fontSize = 25.sp, color = Color.White),
+//                onClick = {
+//                    amOrPm = options[i]
+//                    Log.d("test", amOrPm)
+//                }
+//            )
+//        }
+//    }
+    LazyColumn {
+        items(options.size) { index ->
+            val (text, setText) = remember {mutableStateOf(options[index-1])}
             ClickableText(
                 text = AnnotatedString(text),
                 style = TextStyle(fontSize = 25.sp, color = Color.White),
                 onClick = {
-                    amOrPm = options[i]
+                    amOrPm = options[index-1]
                     Log.d("test", amOrPm)
                 }
             )
