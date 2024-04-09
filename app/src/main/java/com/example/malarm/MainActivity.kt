@@ -165,27 +165,14 @@ fun TextSlider(options: List<String> = listOf("AM", "PM")) {
     // will eventually need to be stored in permanent storage
     var amOrPm = "AM"
 
-//    Column {
-//        for (i in 0..1) {
-//            val (text, setText) = remember { mutableStateOf(options[i]) }
-//            ClickableText(
-//                text = AnnotatedString(text),
-//                style = TextStyle(fontSize = 25.sp, color = Color.White),
-//                onClick = {
-//                    amOrPm = options[i]
-//                    Log.d("test", amOrPm)
-//                }
-//            )
-//        }
-//    }
     LazyColumn {
         items(options.size) { index ->
-            val (text, setText) = remember {mutableStateOf(options[index-1])}
+            val (text, setText) = remember {mutableStateOf(options[index])}
             ClickableText(
                 text = AnnotatedString(text),
                 style = TextStyle(fontSize = 25.sp, color = Color.White),
                 onClick = {
-                    amOrPm = options[index-1]
+                    amOrPm = options[index]
                     Log.d("test", amOrPm)
                 }
             )
@@ -194,7 +181,7 @@ fun TextSlider(options: List<String> = listOf("AM", "PM")) {
 }
 
 @Composable
-fun IntSlider() {
+fun IntSlider(options: List<Int> = (1..60).toList()) {
     MalarmTheme {
 
         val (clicked, setClicked) = remember { mutableStateOf(false) }
@@ -203,13 +190,13 @@ fun IntSlider() {
         var time by remember { mutableIntStateOf(0) }
 
         LazyColumn {
-            items(60) { index ->
+            items(options.size) { index ->
                 ClickableText(
-                    text = if (index+1 >= 10) AnnotatedString((index+1).toString()) else AnnotatedString("0" + (index+1).toString()),
+                    text = if (options[index] >= 10) AnnotatedString(options[index].toString()) else AnnotatedString("0" + options[index].toString()),
                     style = TextStyle(fontSize = 25.sp, color = Color.White),
                     onClick = {
                         setClicked(!clicked)
-                        time = index+1
+                        time = options[index]
                         if (clicked) {
                             setText("Clicked.")
                         } else {
