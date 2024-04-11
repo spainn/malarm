@@ -195,14 +195,7 @@ fun IntSlider(options: List<Int> = (1..60).toList()) {
                     text = if (options[index] >= 10) AnnotatedString(options[index].toString()) else AnnotatedString("0" + options[index].toString()),
                     style = TextStyle(fontSize = 25.sp, color = Color.White),
                     onClick = {
-                        setClicked(!clicked)
-                        time = options[index]
-                        if (clicked) {
-                            setText("Clicked.")
-                        } else {
-                            setText("Not clicked.")
-                        }
-                        Log.d("Time:", "$time")
+                        time = text.toInt()
                     }
                 )
             }
