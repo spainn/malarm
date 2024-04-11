@@ -132,6 +132,7 @@ fun DigitalTime(
         text = AnnotatedString(text),
         style = TextStyle(fontSize = 25.sp, color = Color.White),
         modifier = modifier,
+            //.offset(x = 100.dp, y = 100.dp),
         onClick = {
             showSlider = true
             Log.d("DigitalTime ClickableText", "was clicked")
@@ -150,9 +151,9 @@ fun DigitalTime(
 }
 
 @Composable
-fun TimeSelection() {
+fun TimeSelection(modifier: Modifier = Modifier.offset(x = -100.dp)) {
     MalarmTheme {
-        Row() {
+        Row(modifier = modifier) {
             TextSlider()
             IntSlider()
         }
