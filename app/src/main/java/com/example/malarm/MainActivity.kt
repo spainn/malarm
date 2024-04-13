@@ -151,11 +151,13 @@ fun DigitalTime(
 }
 
 @Composable
-fun TimeSelection(modifier: Modifier = Modifier.offset(x = -100.dp)) {
+fun TimeSelection(modifier: Modifier = Modifier.offset(x = -200.dp)) {
     MalarmTheme {
         Row(modifier = modifier) {
-            TextSlider()
             IntSlider()
+            Spacer(modifier = Modifier.width(5.dp))
+            IntSlider()
+            TextSlider()
         }
     }
 }
