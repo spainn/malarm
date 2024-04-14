@@ -128,33 +128,36 @@ fun DigitalTime(
     val (text, setText) = remember { mutableStateOf("$hour:$minute $amOrPm") }
     var showSlider by remember { mutableStateOf(false) }
 
-    ClickableText(
-        text = AnnotatedString(text),
-        style = TextStyle(fontSize = 25.sp, color = Color.White),
-        modifier = modifier,
-            //.offset(x = 100.dp, y = 100.dp),
-        onClick = {
-            showSlider = true
-            Log.d("DigitalTime ClickableText", "was clicked")
-        }
-    )
-
     // WORK HERE TO MODIFY BOTH SLIDERS TO MAKE THEM USABLE WHEN THE TIME IS CLICKED< ALSO
     // HIDE ORIGINAL TIME WHEN CLICKED AND MAKE IT TO WHERE showSlider IS SET BACK
     // TO FALSE
     // NEED TO MOVE STUFF TO WORK DOWN NOT UP... aka TimeSelection below DigitalTime, but for all
     //  composables
     if (showSlider) {
-        TimeSelection()
+        TimeSelection(modifier = Modifier.weight(3f)
+            .weight(3f),
+            .padding(start = 20.dp)
+        )
         //showSlider = false
+    } else {
+        ClickableText(
+            text = AnnotatedString(text),
+            style = TextStyle(fontSize = 25.sp, color = Color.White),
+            modifier = modifier,
+            //.offset(x = 100.dp, y = 100.dp),
+            onClick = {
+                showSlider = true
+                Log.d("DigitalTime ClickableText", "was clicked")
+            }
+        )
     }
 }
 
 @Composable
-fun TimeSelection(modifier: Modifier = Modifier.offset(x = -200.dp)) {
+fun TimeSelection(modifier: Modifier = Modifier.offset(x = 0.dp)) {
     MalarmTheme {
         Row(modifier = modifier) {
-            IntSlider()
+            IntSlider(modifier = Modifier.padding(start = 20.dp))
             Spacer(modifier = Modifier.width(5.dp))
             IntSlider()
             Spacer(modifier = Modifier.width(5.dp))
@@ -185,7 +188,7 @@ fun TextSlider(options: List<String> = listOf("AM", "PM")) {
 }
 
 @Composable
-fun IntSlider(options: List<Int> = (1..60).toList()) {
+fun IntSlider(options: List<Int> = (1..60).toList(), modifier: Modifier = Modifier) {
     MalarmTheme {
 
         val (clicked, setClicked) = remember { mutableStateOf(false) }
