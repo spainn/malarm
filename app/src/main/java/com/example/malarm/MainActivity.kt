@@ -157,6 +157,7 @@ fun TimeSelection(modifier: Modifier = Modifier.offset(x = -200.dp)) {
             IntSlider()
             Spacer(modifier = Modifier.width(5.dp))
             IntSlider()
+            Spacer(modifier = Modifier.width(5.dp))
             TextSlider()
         }
     }
